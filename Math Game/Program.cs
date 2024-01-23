@@ -1,8 +1,13 @@
-﻿//menu
-string? readValue;
+﻿
 Random rand = new Random();
+List<string> history = new List<string> ();    
+
 void GameLoop()
 {
+
+    string? readValue;
+    
+
     do
     {
         Console.WriteLine("Welcome to the maths game.\n");
@@ -11,6 +16,7 @@ void GameLoop()
         Console.WriteLine("2 - Subtraction");
         Console.WriteLine("3 - Multiplication");
         Console.WriteLine("4 - Division");
+        Console.WriteLine("5 - History");
         readValue = Console.ReadLine();
 
         switch (readValue)
@@ -31,6 +37,11 @@ void GameLoop()
                 DivisionGame();
                 break;
 
+            case "5":
+                foreach(string s in history)
+                Console.WriteLine(s);
+                break;
+           
 
         }
     } while (readValue.ToLower() != "exit");
@@ -39,6 +50,7 @@ void GameLoop()
 
 void AdditionGame()
 {
+    int score = 0;
     string? readValueAdd = "";
     Console.WriteLine("Welcome to Addition mode. Type exit to return to the main menu.");
     while (readValueAdd.ToLower() != "exit") 
@@ -54,18 +66,21 @@ void AdditionGame()
 
         if (int.TryParse(readValueAdd, out ans) && ans == a + b)
         {
-            Console.WriteLine("Correct!");
-            continue;
+            score++;
+            Console.WriteLine($"Correct! Score: {score}");
+            
         }
         else
         {
-            Console.WriteLine("Incorrect, try again.");
+            Console.WriteLine($"Incorrect, try again. Score: {score}");
         }
+        history.Add($"{a} + {b} = {readValueAdd}");
     }
 }
 
 void SubtractionGame()
 {
+    int score = 0;
     string? readValueAdd = "";
     Console.WriteLine("Welcome to Subtraction mode. Type exit to return to the main menu.");
     while (readValueAdd.ToLower() != "exit")
@@ -81,18 +96,21 @@ void SubtractionGame()
 
         if (int.TryParse(readValueAdd, out ans) && ans == a - b)
         {
-            Console.WriteLine("Correct!");
-            continue;
+            score++;
+            Console.WriteLine($"Correct! Score: {score}");
+            
+            
         }
         else
         {
-            Console.WriteLine("Incorrect, try again.");
+            Console.WriteLine($"Incorrect, try again. Score: {score}");
         }
     }
 }
 
 void MultiplicationGame()
 {
+    int score = 0;
     string? readValueAdd = "";
     Console.WriteLine("Welcome to Multiplication mode. Type exit to return to the main menu.");
     while (readValueAdd.ToLower() != "exit")
@@ -108,18 +126,20 @@ void MultiplicationGame()
 
         if (int.TryParse(readValueAdd, out ans) && ans == a * b)
         {
-            Console.WriteLine("Correct!");
-            continue;
+            score++;
+            Console.WriteLine($"Correct! Score: {score}");
+            
         }
         else
         {
-            Console.WriteLine("Incorrect, try again.");
+            Console.WriteLine($"Incorrect, try again. Score: {score}");
         }
     }
 }
 
 void DivisionGame()
 {
+    int score = 0;
     string? readValueAdd = "";
     Console.WriteLine("Welcome to Division mode. Type exit to return to the main menu.");
     while (readValueAdd.ToLower() != "exit")
@@ -137,14 +157,17 @@ void DivisionGame()
 
         if (int.TryParse(readValueAdd, out ans) && ans == a / b)
         {
-            Console.WriteLine("Correct!");
-            continue;
+            score++;
+            Console.WriteLine($"Correct! Score: {score}");
+            
         }
         else
         {
-            Console.WriteLine("Incorrect, try again.");
+            Console.WriteLine($"Incorrect, try again. Score: {score}");
         }
     }
 }
+
+
 
 GameLoop();
